@@ -3,13 +3,12 @@ package com.gridmi.weather_test.tools;
 import android.os.Handler;
 import android.os.Looper;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.google.gson.Gson;
 import com.gridmi.weather_test.Constants;
 import com.gridmi.weather_test.dtos.CityDto;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -95,7 +94,7 @@ public class API {
         }
 
         @Override
-        public final void onResponse(@NotNull Call call, @NotNull Response response) {
+        public final void onResponse(@NonNull Call call, @NonNull Response response) {
             try {
                 if (!response.isSuccessful()) throw new IOException("Not successful response!");
                 T r = gson.fromJson(Objects.requireNonNull(response.body()).string(), convert);
@@ -106,7 +105,7 @@ public class API {
         }
 
         @Override
-        public final void onFailure(@NotNull Call call, @NotNull IOException e) {
+        public final void onFailure(@NonNull Call call, @NonNull IOException e) {
             onPreResult(null, e);
         }
 
